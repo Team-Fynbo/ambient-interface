@@ -7,9 +7,19 @@ import java.net.URLConnection;
 
 public class URLModule {
 
+	/**
+	 * Takes a URL as input and parses for the current weather and finds the
+	 * corresponding integer for the specified weather
+	 * 
+	 * @param args
+	 *            args[1] must be the URL to connect to and parse from
+	 */
 	public static void main(String[] args) {
 		try {
+			// if arguments exist then move on
 			if (args.length > 0) {
+				// initialize variables
+				// set up connection and buffer stream
 				URL site = new URL(args[0]);
 				URLConnection conn = site.openConnection();
 				BufferedReader input = new BufferedReader(
@@ -17,7 +27,9 @@ public class URLModule {
 				String line = null;
 				String components[] = null;
 
+				// read the source code
 				while ((line = input.readLine()) != null) {
+					// parse for the current weather conditions
 					if (line.contains("\"cond\">")) {
 						components = line.split("\"cond\">");
 						if (components.length > 0) {
@@ -30,12 +42,12 @@ public class URLModule {
 				System.out.println("Current Conditions: " + line);
 				System.out.println(weatherToInt(line));
 				input.close();
-			} else {
+			} else { // Missing arguments
 				System.out.println("Insufficient Arguments");
 			}
-		} catch (MalformedURLException mURLe) {
+		} catch (MalformedURLException mURLe) { // URL Error
 			System.out.println("Inproper URL Error");
-		} catch (IOException ioe) {
+		} catch (IOException ioe) { // Possible internet connectivity issues
 			System.out.println(ioe.toString());
 			if (ioe.toString().toLowerCase().contains("unknownhostexception")) {
 				System.out.println("Suggestion:");
@@ -44,34 +56,30 @@ public class URLModule {
 		}
 	}
 
+	/**
+	 * Further parses the current conditions to convert the condition to an
+	 * integer
+	 * 
+	 * @param weather
+	 *            the current condition to convert
+	 * @return integer representation of the given weather condition
+	 */
 	public static int weatherToInt(String weather) {
 		weather = weather.toLowerCase();
-		if (weather.contains("sunny"))
-		{
+		if (weather.contains("sunny")) {
 			return 1;
-		}
-		else if (weather.contains("thunder"))
-		{
+		} else if (weather.contains("thunder")) {
 			return 4;
-		}
-		else if (weather.contains("rain") || weather.contains("shower") || weather.contains("drizzle"))
-		{
+		} else if (weather.contains("rain") || weather.contains("shower")
+				|| weather.contains("drizzle")) {
 			return 2;
-		}
-		else if (weather.contains("wind") || weather.contains("breez"))
-		{
+		} else if (weather.contains("wind") || weather.contains("breez")) {
 			return 3;
-		}
-		else if (weather.contains("snow"))
-		{
+		} else if (weather.contains("snow")) {
 			return 5;
-		}
-		else if (weather.contains("cloud"))
-		{
+		} else if (weather.contains("cloud")) {
 			return 6;
-		}
-		else
-		{
+		} else {
 			return 0;
 		}
 	}
