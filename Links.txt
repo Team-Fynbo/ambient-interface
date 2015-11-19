@@ -1,0 +1,5 @@
+Honolulu: http://www.accuweather.com/en/us/honolulu-hi/96817/weather-forecast/348211
+Hilo: http://www.accuweather.com/en/us/hilo-hi/96720/weather-forecast/328444
+Kaunakakai: http://www.accuweather.com/en/us/kaunakakai-hi/96748/weather-forecast/337839
+Kalaheo: http://www.accuweather.com/en/us/kalaheo-hi/96741/weather-forecast/337834
+Kahului: http://www.accuweather.com/en/us/kahului-hi/96732/weather-forecast/337831
