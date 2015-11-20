@@ -721,6 +721,7 @@ public class GUI {
 
 		urlBox = new JTextField();
 		GridBagConstraints gbc_urlBox = new GridBagConstraints();
+		gbc_urlBox.anchor = GridBagConstraints.EAST;
 		gbc_urlBox.gridwidth = 2;
 		gbc_urlBox.insets = new Insets(0, 0, 5, 5);
 		gbc_urlBox.fill = GridBagConstraints.HORIZONTAL;
@@ -740,6 +741,7 @@ public class GUI {
 
 		updateBox = new JTextField();
 		GridBagConstraints gbc_updateBox = new GridBagConstraints();
+		gbc_updateBox.anchor = GridBagConstraints.EAST;
 		gbc_updateBox.insets = new Insets(0, 0, 5, 5);
 		gbc_updateBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_updateBox.gridx = 5;
@@ -750,6 +752,7 @@ public class GUI {
 		unitCombo = new JComboBox<String>();
 		unitCombo.setModel(new DefaultComboBoxModel<String>(new String[] { "Seconds", "Minutes", "Hours" }));
 		GridBagConstraints gbc_unitCombo = new GridBagConstraints();
+		gbc_unitCombo.anchor = GridBagConstraints.EAST;
 		gbc_unitCombo.insets = new Insets(0, 0, 5, 5);
 		gbc_unitCombo.fill = GridBagConstraints.HORIZONTAL;
 		gbc_unitCombo.gridx = 6;
@@ -766,6 +769,7 @@ public class GUI {
 
 		JSlider slider = new JSlider();
 		GridBagConstraints gbc_slider = new GridBagConstraints();
+		gbc_slider.anchor = GridBagConstraints.SOUTH;
 		gbc_slider.fill = GridBagConstraints.HORIZONTAL;
 		gbc_slider.gridwidth = 4;
 		gbc_slider.insets = new Insets(0, 0, 0, 5);
@@ -775,6 +779,7 @@ public class GUI {
 
 		start = new JButton("Start");
 		GridBagConstraints gbc_start = new GridBagConstraints();
+		gbc_start.anchor = GridBagConstraints.SOUTH;
 		gbc_start.insets = new Insets(0, 0, 0, 5);
 		gbc_start.gridx = 5;
 		gbc_start.gridy = 17;
@@ -782,6 +787,7 @@ public class GUI {
 
 		stop = new JButton("Stop");
 		GridBagConstraints gbc_stop = new GridBagConstraints();
+		gbc_stop.anchor = GridBagConstraints.SOUTH;
 		gbc_stop.insets = new Insets(0, 0, 0, 5);
 		gbc_stop.gridx = 6;
 		gbc_stop.gridy = 17;
@@ -860,14 +866,14 @@ public class GUI {
 	 * @param ex
 	 *            -The exception in string form.
 	 */
-	public void showException(Exception ex) {
-		frmFynboAmbientInterface = new JFrame("Exception");
-		frmFynboAmbientInterface.setSize(500, 200);
-		frmFynboAmbientInterface.setLocationRelativeTo(null);
+	public static void showException(Exception ex) {
+		JFrame exceptionWindow = new JFrame("Exception");
+		exceptionWindow.setSize(500, 200);
+		exceptionWindow.setLocationRelativeTo(null);
 		JLabel exception = new JLabel(ex.toString(), JLabel.CENTER);
-		frmFynboAmbientInterface.getContentPane().add(exception);
-		frmFynboAmbientInterface.setVisible(true);
-		frmFynboAmbientInterface.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		exceptionWindow.getContentPane().add(exception);
+		exceptionWindow.setVisible(true);
+		exceptionWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	/**
@@ -876,13 +882,13 @@ public class GUI {
 	 * @param msg
 	 *            -The message in string form.
 	 */
-	public void showMessage(String msg) {
-		frmFynboAmbientInterface = new JFrame("Message");
-		frmFynboAmbientInterface.setSize(500, 200);
-		frmFynboAmbientInterface.setLocationRelativeTo(null);
+	public static void showMessage(String msg) {
+		JFrame exceptionWindow = new JFrame("Message");
+		exceptionWindow.setSize(500, 200);
+		exceptionWindow.setLocationRelativeTo(null);
 		JLabel message = new JLabel(msg, JLabel.CENTER);
-		frmFynboAmbientInterface.getContentPane().add(message);
-		frmFynboAmbientInterface.setVisible(true);
+		exceptionWindow.getContentPane().add(message);
+		exceptionWindow.setVisible(true);
 	}
 
 	/**
@@ -907,27 +913,6 @@ public class GUI {
 
 	}
 
-	/**
-	 * Gets the file (using the JFileChooser) needed for input.
-	 * 
-	 * @return The file the user chooses.
-	 * @throws FileOperationCancelledException
-	 *             File operation cancelled.
-	 */
-
-	public File getFolder(String title) throws FileOperationCancelledException {
-		JFileChooser fc = new JFileChooser();
-		fc.setDialogTitle(title);
-		fc.setCurrentDirectory(new File(System.getProperty("user.dir")));
-		fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		int response = fc.showDialog(frmFynboAmbientInterface, "use");
-		if (response == JFileChooser.APPROVE_OPTION) {
-			return fc.getSelectedFile();
-		} else {
-			throw new FileOperationCancelledException("Folder operation cancelled");
-		}
-
-	}
 
 	/**
 	 * Converts the given time to milliseconds using the given units to do the
