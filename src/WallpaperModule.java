@@ -1,12 +1,25 @@
 import java.util.HashMap;
-
 import com.sun.jna.Native;
 import com.sun.jna.platform.win32.WinDef.UINT_PTR;
 import com.sun.jna.win32.*;
 
 public class WallpaperModule implements Runnable {
 	
+	private String[] urls;
+	private int stateInt;
+	
 	public WallpaperModule(String url1, String url2, String url3, String url4, String url5, String url6, String url7, int weatherInt){
+		
+		urls[0] = "C:/wallpaper.jpg";
+		urls[1] = url1;
+		urls[2] = url2;
+		urls[3] = url3;
+		urls[4] = url4;
+		urls[5] = url5;
+		urls[6] = url6;
+		urls[7] = url7;
+		
+		stateInt = weatherInt;
 		
 	}
 
@@ -14,7 +27,7 @@ public class WallpaperModule implements Runnable {
 	public void run() {
 		
 	      //Set wallpaper path
-	      String path = "C:\\wallpaper.jpg";
+	      String path = urls[stateInt].replace("\\", "\\\\");
 
 	      SPI.INSTANCE.SystemParametersInfo(
 	          new UINT_PTR(SPI.SPI_SETDESKWALLPAPER), 
