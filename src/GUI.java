@@ -799,7 +799,10 @@ public class GUI {
 			public void actionPerformed(ActionEvent e) {
 				start.setEnabled(false);
 				stop.setEnabled(true);
-				urlMod = new URLModule(getURL(), convertToMillis(getUpdate(), getUnit()));
+				String[] wallpapers = { sunBox.getText(), thunderBox.getText(), rainBox.getText(), windBox.getText(),
+						snowBox.getText(), cloudBox.getText(), otherBox.getText() };
+				String[] audios = {sunSoundBox.getText(), thunderSoundBox.getText(), rainSoundBox.getText(), windSoundBox.getText(), snowSoundBox.getText(), cloudSoundBox.getText(), otherSoundBox.getText()};
+				urlMod = new URLModule(getURL(), convertToMillis(getUpdate(), getUnit()), wallpapers, audios);
 				urlThread = new Thread(urlMod);
 				urlThread.setName("URL Thread");
 				urlThread.start();
@@ -912,7 +915,6 @@ public class GUI {
 		}
 
 	}
-
 
 	/**
 	 * Converts the given time to milliseconds using the given units to do the

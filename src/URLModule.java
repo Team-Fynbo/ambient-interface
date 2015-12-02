@@ -22,6 +22,9 @@ public class URLModule implements Runnable {
 	 */
 	private boolean stop;
 
+	private String[] wallpapers;
+	private String[] audios;
+
 	/**
 	 * Initializes the url, time, and stop variables url and time given by the
 	 * user
@@ -31,9 +34,11 @@ public class URLModule implements Runnable {
 	 * @param time
 	 *            the update interval time
 	 */
-	public URLModule(String url, Long time) {
+	public URLModule(String url, Long time, String[] wallpapers, String[] audios) {
 		this.url = url;
 		this.time = time;
+		this.wallpapers = wallpapers;
+		this.audios = audios;
 		stop = false;
 	}
 
@@ -72,6 +77,12 @@ public class URLModule implements Runnable {
 	@Override
 	public void run() {
 
+		WallpaperModule wm = new WallpaperModule(wallpapers[0], wallpapers[1], wallpapers[2], wallpapers[3],
+				wallpapers[4], wallpapers[5], wallpapers[6], 0);
+		AudioModule am = new AudioModule(audios[0], audios[1], audios[2], audios[3],
+				audios[4], audios[5], audios[6], 0);
+		int current = 0;
+		int previous = -1;
 		// wait for another thread to call stop
 		while (!stop) {
 
@@ -102,7 +113,22 @@ public class URLModule implements Runnable {
 					}
 				}
 				System.out.println("Current Conditions as of " + timeStamp + ": " + line);
-				System.out.println(weatherToInt(line));
+				previous = current;
+				current = weatherToInt(line);
+				System.out.println(current);
+
+				if (current != previous) {
+					wm = new WallpaperModule(wallpapers[0], wallpapers[1], wallpapers[2], wallpapers[3], wallpapers[4],
+							wallpapers[5], wallpapers[6], current);
+					am = new AudioModule(audios[0], audios[1], audios[2], audios[3],
+							audios[4], audios[5], audios[6], current);
+					Thread amt = new Thread(am);
+					Thread wmt = new Thread(wm);
+					amt.setName("Audio Thread");
+					wmt.setName("Wallpaper Thread");
+					amt.start();
+					wmt.start();
+				}
 				input.close();
 
 			} catch (MalformedURLException mURLe) { // URL Error

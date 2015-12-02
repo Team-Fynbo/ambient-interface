@@ -9,15 +9,14 @@ public class WallpaperModule implements Runnable {
 	private int stateInt;
 	
 	public WallpaperModule(String url1, String url2, String url3, String url4, String url5, String url6, String url7, int weatherInt){
-		
-		urls[0] = "C:/wallpaper.jpg";
+		urls = new String[8];
+		urls[0] = url7;
 		urls[1] = url1;
 		urls[2] = url2;
 		urls[3] = url3;
 		urls[4] = url4;
 		urls[5] = url5;
 		urls[6] = url6;
-		urls[7] = url7;
 		
 		stateInt = weatherInt;
 		
@@ -27,7 +26,7 @@ public class WallpaperModule implements Runnable {
 	public void run() {
 		
 	      //Set wallpaper path
-	      String path = urls[stateInt].replace("\\", "\\\\");
+	      String path = urls[stateInt].replace("\\", "/");
 
 	      SPI.INSTANCE.SystemParametersInfo(
 	          new UINT_PTR(SPI.SPI_SETDESKWALLPAPER), 
