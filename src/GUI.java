@@ -46,6 +46,7 @@ public class GUI {
 	private JButton stop;
 	private JButton start;
 	private JComboBox<String> unitCombo;
+	private File lastFile;
 
 	/**
 	 * Launch the application.
@@ -67,6 +68,7 @@ public class GUI {
 	 * Create the application.
 	 */
 	public GUI() {
+		lastFile = null;
 		initialize();
 	}
 
@@ -905,11 +907,12 @@ public class GUI {
 	public File getFile(String title) throws FileOperationCancelledException {
 		JFileChooser fc = new JFileChooser();
 		fc.setDialogTitle(title);
-		fc.setCurrentDirectory(new File(System.getProperty("user.dir")));
+		fc.setCurrentDirectory(lastFile);
 		fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 		int response = fc.showDialog(frmFynboAmbientInterface, "use");
 		if (response == JFileChooser.APPROVE_OPTION) {
-			return fc.getSelectedFile();
+			lastFile = fc.getSelectedFile();
+			return lastFile;
 		} else {
 			throw new FileOperationCancelledException("File operation cancelled");
 		}
