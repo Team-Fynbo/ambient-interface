@@ -801,7 +801,7 @@ public class GUI {
 			public void actionPerformed(ActionEvent e) {
 				start.setEnabled(false);
 				stop.setEnabled(true);
-				String[] wallpapers = { sunBox.getText(), thunderBox.getText(), rainBox.getText(), windBox.getText(),
+				String[] wallpapers = { sunBox.getText(), rainBox.getText(), windBox.getText(), thunderBox.getText(), 
 						snowBox.getText(), cloudBox.getText(), otherBox.getText() };
 				String[] audios = {sunSoundBox.getText(), thunderSoundBox.getText(), rainSoundBox.getText(), windSoundBox.getText(), snowSoundBox.getText(), cloudSoundBox.getText(), otherSoundBox.getText()};
 				urlMod = new URLModule(getURL(), convertToMillis(getUpdate(), getUnit()), wallpapers, audios);

@@ -9,14 +9,63 @@ public class WallpaperModule implements Runnable {
 	private int stateInt;
 	
 	public WallpaperModule(String url1, String url2, String url3, String url4, String url5, String url6, String url7, int weatherInt){
-		urls = new String[8];
-		urls[0] = url7;
-		urls[1] = url1;
-		urls[2] = url2;
-		urls[3] = url3;
-		urls[4] = url4;
-		urls[5] = url5;
-		urls[6] = url6;
+		urls = new String[7];
+		if (url7.isEmpty())
+		{
+			urls[0] = "C:/Users/Justin/git/ambient-interface/Ambient images/other.jpg";
+		}
+		else
+		{
+			urls[0] = url7;
+		}
+		if (url1.isEmpty())
+		{
+			urls[1] = "C:/Users/Justin/git/ambient-interface/Ambient images/sun.jpg";
+		}
+		else
+		{
+			urls[1] = url1;
+		}
+		if (url2.isEmpty())
+		{
+			urls[2] = "C:/Users/Justin/git/ambient-interface/Ambient images/rain.jpg";
+		}
+		else
+		{
+			urls[2] = url2;
+		}
+		if (url3.isEmpty())
+		{
+			urls[3] = "C:/Users/Justin/git/ambient-interface/Ambient images/wind.jpg";
+		}
+		else
+		{
+			urls[3] = url3;
+		}
+		if (url4.isEmpty())
+		{
+			urls[4] = "C:/Users/Justin/git/ambient-interface/Ambient images/thunder.jpg";
+		}
+		else
+		{
+			urls[4] = url4;
+		}
+		if (url5.isEmpty())
+		{
+			urls[5] = "C:/Users/Justin/git/ambient-interface/Ambient images/snow.jpg";
+		}
+		else
+		{
+			urls[5] = url5;
+		}
+		if (url6.isEmpty())
+		{
+			urls[6] = "C:/Users/Justin/git/ambient-interface/Ambient images/cloudy.jpg";
+		}
+		else
+		{
+			urls[6] = url6;
+		}
 		
 		stateInt = weatherInt;
 		
