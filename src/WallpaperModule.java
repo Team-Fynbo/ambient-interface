@@ -71,6 +71,11 @@ public class WallpaperModule implements Runnable {
 		
 	}
 
+	
+	/*
+	 * Most of the code below taken from code written by 
+	 * user Mark Peters on StackOverflow @ http://bit.ly/1QnsYV6
+	 */
 	@Override
 	public void run() {
 		
